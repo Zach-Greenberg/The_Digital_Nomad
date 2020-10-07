@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>The Digital Nomad</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="style.css">
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="countries.js"></script>
+	<script src="jobs.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('select').formSelect();
+
+			// Dynamically populate the countries.
+			// fetchCountries();
+			fetchJobs();
+
+			$("#country").change(function(event) {
+				const country = $( "#country option:selected").text();
+				console.log(country  + " " + this.value);
+			})
+		});
+	</script>
+</head>
+
+<body class="is-preload">
+	<div class="container">
+		<!-- Header -->
+		<section id="header">
+			<header class="major">
+				<h1>The Digital Nomad</h1>
+				<p>make your dreams come true</p>
+			</header>
+		</section>
+
+		<!-- One -->
+		<section id="one" class="main special">
+			<div class="info container">
+				<div class="content">
+					<header class="major">
+						<h2>What is a digital nomad?</h2>
+					</header>
+					<p>Digital nomads are people who use telecommunications technologies to earn a living and, more
+						generally, conduct their life in a nomadic manner. Such workers often work remotely from foreign
+						countries, coffee shops, public libraries, co-working spaces, or recreational vehicles.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Two -->
+		<section id="two" class="main special">
+			<div class="info container">
+				<div class="content">
+					<header class="major">
+						<h2>Job title</h2>
+						<div class="topnav">
+							<a class="active" href="#home"></a>
+							<a href="#about"></a>
+							<a href="#contact"></a>
+							<input type="text" placeholder="what job would you like to pursue..">
+							<div class="container">
+								<!-- Page Content goes here -->
+								<div class="row">
+									<div class="input-field col s4">
+										<!-- <input id="Country" type="text" class="validate"> -->
+										<select id="country" class="input-field col s4"></select>
+										<label class="active" for="Country">Country</label>
+									</div>
+									<div class="input-field col s4">
+										<select id="jobOptions">
+											<option>Job Type</option>
+											<option>Account Management</option>
+											<option>Business &amp; Strategy</option>
+											<option>Creative &amp; Design</option>
+											<option>Customer Service</option>
+											<option>Data Science</option>
+											<option>Editorial</option>
+											<option>Education</option>
+											<option>Engineering</option>
+											<option>Finance</option>
+											<option>Fundraising &amp; Development</option>
+											<option>Healthcare &amp; Medicine</option>
+											<option>HR &amp; Recruiting</option>
+											<option>Legal</option>\
+											<option>Marketing &amp; PR</option>
+											<option>Operations</option>
+											<option>Project &amp; Product Management</option>
+											<option>Retail</option>
+											<option>Sales</option>
+											<option>Social Media &amp; Community</option>
+										</select>
+									</div>
+									<div class="input-field col s4">
+										<button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Submit
+											<i class="material-icons right">send</i>
+										</button>
+									</div>
+								</div>
+
+							<div class="row">
+								<div class="col s12">
+									<ul id="jobDetails">
+									<li>Job Name: <span id="jobName"></span></li>
+									<li>Job Location: <span id="jobLocation"></span></li>
+									<li><a id="jobURL" href="" target="_blank">Apply</a></li>
+									</ul>
+								</div>
+							</div>
+							<header class="pogMid">
+								<h2>Country</h2>
+								<div class="topnav">
+									<a class="active" href="#home"></a>
+									<a href="#about"></a>
+									<a href="#contact"></a>
+									<input type="text" placeholder="where would you like to go..">
+								</div>
+							</header>
+						</div>
+					</header>
+				</div>
+			</div>		<!--search results for the job title-->
+		</section>
+</body>
+
+</html>
