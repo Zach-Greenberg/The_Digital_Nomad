@@ -1,5 +1,5 @@
 body {
-    background: url(https://wallpaperaccess.com/full/16221.jpg) no-repeat fixed;
+    background: url(https://i.pinimg.com/originals/e7/df/94/e7df94160c2b3127ccf5fa7cace660f6.jpg) no-repeat fixed;
     background-size: cover;
 }
 
@@ -14,3 +14,13 @@ body {
     margin-bottom: 25px;
 }
 
+#header {
+    text-align: center;
+    padding: 50px;
+}
+#jobt {
+    text-align: center;
+}
+#searchthing {
+    text-align: center;
+}
