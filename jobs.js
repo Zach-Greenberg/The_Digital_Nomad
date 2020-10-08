@@ -1,5 +1,10 @@
 $('select').formSelect();
 
+let savedJobs = JSON.parse(localStorage.getItem("ww:saved-jobs"));
+if (! savedJobs) {
+    savedJobs = []
+}
+
 //add click function to search for job type
     $("#jobSubmit").click(function(event){
         event.preventDefault();
@@ -14,7 +19,7 @@ $('select').formSelect();
         }).then(function(response) { //forEach to create what i need into an object and push that into an array
             var jobListing = response.results
             console.log(jobListing);
-            for (i = 0; i < 10; i++){ //need to change 20 to jobListing.length
+            for (let i = 0; i < 10; i++){ //need to change 20 to jobListing.length
 
                 //create div for job information
                 var jobDiv = $(`<div class = 'col s12 jobDetails' id = 'jobListing${i}'>`);
@@ -32,11 +37,27 @@ $('select').formSelect();
                 var jobRef = $("<a id='jobURL' target ='_blank'>Apply</a>");
                 jobRef.attr("href", (jobListing[i].refs.landing_page));
 
+                var $jobSave = $("<a data-job-id=\"" + i + "\">Save</a>");
+                $jobSave.on("click", function () {
+                    let jobId = $(this).data('jobId');
+                    let jobData =   {
+                        name: jobListing[jobId].name,
+                        company: jobListing[jobId].company.name,
+                        location: jobListing[jobId].locations[0].name,
+                        url: jobListing[jobId].refs.landing_page
+                    };
+                    savedJobs.push(jobData);
+                    localStorage.setItem("ww:saved-jobs" , JSON.stringify(savedJobs))
+                
+
+                });
+
                 //append all that will be created
                 jobDiv.append(jobCompany);
                 jobDiv.append(jobLocation);
                 jobDiv.append(jobName);
                 jobDiv.append(jobRef);
+                jobDiv.append($jobSave);
                 $("#resultsContainer").append(jobDiv);
             }
         })
