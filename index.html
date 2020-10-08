@@ -13,20 +13,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script src="countries.js"></script>
 	<script src="jobs.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('select').formSelect();
-
-			// Dynamically populate the countries.
-			// fetchCountries();
-			fetchJobs();
-
-			$("#country").change(function(event) {
-				const country = $( "#country option:selected").text();
-				console.log(country  + " " + this.value);
-			})
-		});
-	</script>
+	<script src="script.js"></script>
 </head>
 
 <body class="is-preload">
@@ -67,12 +54,12 @@
 							<div class="container">
 								<!-- Page Content goes here -->
 								<div class="row">
-									<div class="input-field col s4">
+									<div class="input-field col s5">
 										<!-- <input id="Country" type="text" class="validate"> -->
 										<select id="country" class="input-field col s4"></select>
 										<label class="active" for="Country">Country</label>
 									</div>
-									<div class="input-field col s4">
+									<div class="input-field col s5">
 										<select id="jobOptions">
 											<option>Job Type</option>
 											<option>Account Management</option>
@@ -96,21 +83,15 @@
 											<option>Social Media &amp; Community</option>
 										</select>
 									</div>
-									<div class="input-field col s4">
+									<div class="input-field col s2">
 										<button class="btn waves-effect waves-light blue darken-4" type="submit" name="action">Submit
 											<i class="material-icons right">send</i>
 										</button>
 									</div>
 								</div>
 
-							<div class="row">
-								<div class="col s12">
-									<ul id="jobDetails">
-									<li>Job Name: <span id="jobName"></span></li>
-									<li>Job Location: <span id="jobLocation"></span></li>
-									<li><a id="jobURL" href="" target="_blank">Apply</a></li>
-									</ul>
-								</div>
+							<div class="row" id="resultsContainer">
+								<!--generated information made into divs-->
 							</div>
 							<header class="pogMid">
 								<h2>Country</h2>
@@ -129,3 +110,8 @@
 </body>
 
 </html>
+
+
+
+
+<!--clean up job search function-->
