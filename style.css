@@ -1,1 +1,16 @@
+body {
+    background: url(https://wallpaperaccess.com/full/16221.jpg) no-repeat fixed;
+    background-size: cover;
+}
+
+#test {
+    background-color: fuchsia;
+    padding: 10px;
+}
+
+.info {
+    background: rgb(150, 150, 230, 0.70);
+    padding: 1px 15px 5px 15px;
+    margin-bottom: 25px;
+}
 
