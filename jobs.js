@@ -5,6 +5,28 @@ if (! savedJobs) {
     savedJobs = []
 }
 
+function listSavedJobs()
+{
+    const $jobsList = $('#savedJobsList');
+    let $savedJob = $jobsList.find('.saved-job');
+    $savedJob.remove();
+
+    $.each(savedJobs, function (i, savedJob) {
+        $savedJob = $savedJob.clone();
+        $savedJob.find('.saved-job-name').text(savedJob.name);
+        $savedJob.find('.saved-job-location').text(savedJob.location);
+        $savedJob.find('.saved-job-company').text(savedJob.company);
+        $savedJob.find('.saved-job-url').attr("href" , savedJob.url);
+        $jobsList.append($savedJob);
+    });
+}
+
+$(document).ready(function(){
+    $('.modal').modal();
+
+    listSavedJobs();
+}) 
+
 //add click function to search for job type
     $("#jobSubmit").click(function(event){
         event.preventDefault();
@@ -37,7 +59,7 @@ if (! savedJobs) {
                 var jobRef = $("<a id='jobURL' target ='_blank'>Apply</a>");
                 jobRef.attr("href", (jobListing[i].refs.landing_page));
 
-                var $jobSave = $("<a data-job-id=\"" + i + "\">Save</a>");
+                var $jobSave = $("<a class=\"save\" data-job-id=\"" + i + "\">Save</a>");
                 $jobSave.on("click", function () {
                     let jobId = $(this).data('jobId');
                     let jobData =   {
