@@ -5,6 +5,7 @@ if (! savedJobs) {
     savedJobs = []
 }
 
+
     const $jobsList = $('#savedJobsList');
     let $savedJob = $jobsList.find('.saved-job');
     $savedJob.remove();
@@ -17,7 +18,6 @@ if (! savedJobs) {
         $savedJob.find('.saved-job-url').attr("href" , savedJob.url);
         $jobsList.append($savedJob);
     });
-
 
 $(document).ready(function(){
     $('.modal').modal();
