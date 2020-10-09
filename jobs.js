@@ -1,5 +1,32 @@
 $('select').formSelect();
 
+let savedJobs = JSON.parse(localStorage.getItem("ww:saved-jobs"));
+if (! savedJobs) {
+    savedJobs = []
+}
+
+function listSavedJobs()
+{
+    const $jobsList = $('#savedJobsList');
+    let $savedJob = $jobsList.find('.saved-job');
+    $savedJob.remove();
+
+    $.each(savedJobs, function (i, savedJob) {
+        $savedJob = $savedJob.clone();
+        $savedJob.find('.saved-job-name').text(savedJob.name);
+        $savedJob.find('.saved-job-location').text(savedJob.location);
+        $savedJob.find('.saved-job-company').text(savedJob.company);
+        $savedJob.find('.saved-job-url').attr("href" , savedJob.url);
+        $jobsList.append($savedJob);
+    });
+}
+
+$(document).ready(function(){
+    $('.modal').modal();
+
+    listSavedJobs();
+}) 
+
 //add click function to search for job type
     $("#jobSubmit").click(function(event){
         event.preventDefault();
@@ -14,7 +41,7 @@ $('select').formSelect();
         }).then(function(response) { //forEach to create what i need into an object and push that into an array
             var jobListing = response.results
             console.log(jobListing);
-            for (i = 0; i < 10; i++){ //need to change 20 to jobListing.length
+            for (let i = 0; i < 10; i++){ //need to change 20 to jobListing.length
 
                 //create div for job information
                 var jobDiv = $(`<div class = 'col s12 jobDetails' id = 'jobListing${i}'>`);
@@ -32,11 +59,41 @@ $('select').formSelect();
                 var jobRef = $("<a id='jobURL' target ='_blank'>Apply</a>");
                 jobRef.attr("href", (jobListing[i].refs.landing_page));
 
+                var $jobSave = $("<a class=\"save\" data-job-id=\"" + i + "\">Save</a>");
+                $jobSave.on("click", function () {
+                    let jobId = $(this).data('jobId');
+                    let jobData =   {
+                        name: jobListing[jobId].name,
+                        company: jobListing[jobId].company.name,
+                        location: jobListing[jobId].locations[0].name,
+                        url: jobListing[jobId].refs.landing_page
+                    };
+
+                    //Don't save duplicate jobs
+                    let dupeFound = false;
+
+                    $.each(savedJobs, function(i, localJob){
+                        if (localJob.url === jobData.url) {
+                            dupeFound = true;
+                            return;
+                        }
+                    });
+
+                    if (dupeFound === false) {
+                        savedJobs.push(jobData);
+                        localStorage.setItem("ww:saved-jobs" , JSON.stringify(savedJobs))
+                    }
+                
+                    $(this).addClass('saved-job');
+                    $(this).text('Saved');
+                });
+
                 //append all that will be created
                 jobDiv.append(jobCompany);
                 jobDiv.append(jobLocation);
                 jobDiv.append(jobName);
                 jobDiv.append(jobRef);
+                jobDiv.append($jobSave);
                 $("#resultsContainer").append(jobDiv);
             }
         })

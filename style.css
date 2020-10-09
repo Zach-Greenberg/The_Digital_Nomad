@@ -24,3 +24,22 @@ body {
 #searchthing {
     text-align: center;
 }
+
+.showSavedJobsButton {
+    position: absolute;
+    top: 250px;
+    right: 4em;
+    width: 16em;
+    background: lightblue;  
+}
+
+.save {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.saved-job {
+    background: #555;
+    color: white;
+    padding: 4px
+}
