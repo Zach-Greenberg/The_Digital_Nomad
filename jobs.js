@@ -100,12 +100,12 @@ $(document).ready(function(){
     })
   
     //add click function to search for weather in a city
-$("#citySubmit").click(function(event){
+$("#citySearch").click(function(event){
     const apiKey = "&appid=39889f788ff3fd3d6d6270348600fc5b";
         event.preventDefault();
         $(".weatherInfo").empty();
 
-        let  cityName = $("#citySearch").val();
+        let  cityName = $("#cityName").val();
         var  weatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=imperial' + apiKey;
         $.ajax({
             url: weatherURL, 
