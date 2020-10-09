@@ -5,8 +5,7 @@ if (! savedJobs) {
     savedJobs = []
 }
 
-function listSavedJobs()
-{
+
     const $jobsList = $('#savedJobsList');
     let $savedJob = $jobsList.find('.saved-job');
     $savedJob.remove();
@@ -19,7 +18,6 @@ function listSavedJobs()
         $savedJob.find('.saved-job-url').attr("href" , savedJob.url);
         $jobsList.append($savedJob);
     });
-}
 
 $(document).ready(function(){
     $('.modal').modal();
@@ -34,14 +32,14 @@ $(document).ready(function(){
 
         let  jobs = $( "#jobOptions option:selected" ).text();
 
-        var  queryURL = "https://www.themuse.com/api/public/jobs?category=" + jobs + "&page=0";//add ids to 
+        var  queryURL = "https://www.themuse.com/api/public/jobs?category=" + jobs + "&page=0";
         $.ajax({
             url: queryURL, 
             method: "GET"
-        }).then(function(response) { //forEach to create what i need into an object and push that into an array
+        }).then(function(response) {
             var jobListing = response.results
             console.log(jobListing);
-            for (let i = 0; i < 10; i++){ //need to change 20 to jobListing.length
+            for (i = 0; i < 10; i++){
 
                 //create div for job information
                 var jobDiv = $(`<div class = 'col s12 jobDetails' id = 'jobListing${i}'>`);
