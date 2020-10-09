@@ -38,6 +38,8 @@ body {
     cursor: pointer;
 }
 
-.showSavedJobsBox {
-    
+.saved-job {
+    background: #555;
+    color: white;
+    padding: 4px
 }

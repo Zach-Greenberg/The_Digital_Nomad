@@ -68,10 +68,24 @@ $(document).ready(function(){
                         location: jobListing[jobId].locations[0].name,
                         url: jobListing[jobId].refs.landing_page
                     };
-                    savedJobs.push(jobData);
-                    localStorage.setItem("ww:saved-jobs" , JSON.stringify(savedJobs))
-                
 
+                    //Don't save duplicate jobs
+                    let dupeFound = false;
+
+                    $.each(savedJobs, function(i, localJob){
+                        if (localJob.url === jobData.url) {
+                            dupeFound = true;
+                            return;
+                        }
+                    });
+
+                    if (dupeFound === false) {
+                        savedJobs.push(jobData);
+                        localStorage.setItem("ww:saved-jobs" , JSON.stringify(savedJobs))
+                    }
+                
+                    $(this).addClass('saved-job');
+                    $(this).text('Saved');
                 });
 
                 //append all that will be created
